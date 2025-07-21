@@ -1,6 +1,6 @@
 public class SimplePaySys {
 
-    public abstract class PaymentMethod{
+    public static abstract class PaymentMethod{
         private String name;
 
         public PaymentMethod(String name){
@@ -13,7 +13,7 @@ public class SimplePaySys {
         public abstract void pay(double amount);
     }
 
-    public class CreditCard extends PaymentMethod{
+    public static class CreditCard extends PaymentMethod{
 
         public CreditCard(String name){
             super(name);
@@ -21,13 +21,34 @@ public class SimplePaySys {
 
         @Override
         public void pay(double amount){
-            System.out.println("Paid"+ amount+ "using Credit Card: "+ getName());
+            System.out.println("Paid "+ amount+ " using Credit Card: "+ getName());
         }
 
     }
 
+    public static class Cash extends PaymentMethod{
+
+        public Cash(String name){
+            super(name);
+        }
+
+        @Override
+        public void pay(double amount){
+            System.out.println("Paid "+ amount+ " using Cash: "+ getName());
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println("hello world");
+
+        PaymentMethod card = new CreditCard("Visa");
+        PaymentMethod realcash = new Cash("Wallet");
+
+
+        card.pay(55.0);
+        realcash.pay(10.0);
+
+
+
     }
 
 }
